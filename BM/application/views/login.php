@@ -14,42 +14,31 @@
   <body>
     <div class="container-fluid">
   <div class="row">
-  <div class="col-md-3-offset">
+  <div class="col-lg-4 .col-lg-offset-4 col-md-4 .col-md-offset-4">
   </div>
-    <div class="col-md-6">
-      <form role="form">
+    <div class="col-lg-4 col-md-4 col-xs-12">
+    <h1><b>Badan Mentoring</b></h1>
+    <h3><?php echo $this->session->flashdata('register'); ?></h3>
+      <form action="<?php echo base_url()?>index.php/login/do_login" method="post">
         <div class="form-group">
            
           <label for="exampleInputEmail1">
-            Email address
+            NIM
           </label>
-          <input type="email" class="form-control" id="exampleInputEmail1" />
+          <input type="text" class="form-control" name="nim" />
         </div>
         <div class="form-group">
            
           <label for="exampleInputPassword1">
             Password
           </label>
-          <input type="password" class="form-control" id="exampleInputPassword1" />
+          <input type="password" class="form-control" name="pass" />
         </div>
         <div class="form-group">
-           
-          <label for="exampleInputFile">
-            File input
-          </label>
-          <input type="file" id="exampleInputFile" />
-          <p class="help-block">
-            Example block-level help text here.
-          </p>
+          <a href="<?php echo base_url()?>index.php/login/register">Belum punya akun?</a>
         </div>
-        <div class="checkbox">
-           
-          <label>
-            <input type="checkbox" /> Check me out
-          </label>
-        </div> 
         <button type="submit" class="btn btn-default">
-          Submit
+          Masuk
         </button>
       </form>
     </div>
