@@ -48,7 +48,7 @@
       </div>
       <div class="form-group has-feedback">
         <label>Jenis Kelamin : </label>
-        <input type="radio" name="jk" value="Laki - Laki"> Laki - Laki
+        <input type="radio" name="jk" value="Laki-Laki"> Laki - Laki
         <input type="radio" name="jk" value="Perempuan"> Perempuan
       </div>
       <div class="form-group has-feedback">

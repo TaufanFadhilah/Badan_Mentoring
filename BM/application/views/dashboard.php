@@ -11,6 +11,7 @@
     <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
     <link href="<?php echo base_url()?>assets/docs/assets/css/toolkit-light.css" rel="stylesheet">
     <link href="<?php echo base_url()?>assets/docs/assets/css/application.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
     <style>
       /* note: this is a hack for ios iframe for bootstrap themes shopify page */
       /* this chunk of css is not part of the toolkit :) */
@@ -50,7 +51,7 @@
         <div class="dashhead">
   <div class="dashhead-titles">
     <h6 class="dashhead-subtitle"><?php echo $this->session->userdata('status'); ?> - Dashboards</h6>
-    <h2 class="dashhead-title">Selamat Datang</h2>
+    <h2 class="dashhead-title">Selamat Datang <?php echo $this->session->userdata('nama'); ?></h2>
   </div>
 
   <div class="btn-toolbar dashhead-toolbar">
@@ -63,7 +64,16 @@
 
 <div class="row m-t-lg">
   <div class="col-sm-12 m-b-md">
-    <h1>Timeline</h1>
+    <?php $content = $this->uri->segment(2);
+      switch ($content) {
+        case 'daftar_anggota':
+          include('daftar_anggota.php');
+          break;      
+        default:
+           echo "<h1>Timeline</h1>";
+          break;
+      }
+     ?>
   </div>
 </div>
 
@@ -85,9 +95,17 @@
     <script src="<?php echo base_url()?>assets/docs/assets/js/tablesorter.min.js"></script>
     <script src="<?php echo base_url()?>assets/docs/assets/js/toolkit.js"></script>
     <script src="<?php echo base_url()?>assets/docs/assets/js/application.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
     <script>
       // execute/clear BS loaders for docs
       $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('#daftar_anggota').DataTable();
+      } );
     </script>
   </body>
 </html>

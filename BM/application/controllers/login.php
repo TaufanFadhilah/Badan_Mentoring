@@ -8,13 +8,14 @@ class login extends CI_Controller {
 	}
 
 	public function do_login(){
-		$nim = $_POST['nim'];
+		$nim = mysql_real_escape_string($_POST['nim']);
 		$res = $this->mymodel->select('tbl_user',"nim = $nim");
 		$row = $res->row();
-		if(md5($_POST['pass']) == $row->password){
+		if(md5(mysql_real_escape_string($_POST['pass'])) == $row->password){
 			$newdata = array(
 		        'nim'  => $row->nim,
-		        'status' => $row->status
+		        'status' => $row->status,
+		        'nama' => $row->nama
 			);
 			$this->session->set_userdata($newdata);
 			redirect(base_url().'index.php/dashboard');
@@ -30,7 +31,7 @@ class login extends CI_Controller {
 
 	public function do_register(){
 		$config['upload_path']          	= './assets/img/profile_pictures/';
-	        $config['allowed_types']        = 'gif|jpg|png|gif';
+	        $config['allowed_types']        = 'gif|jpg|png|jpeg';
 	        $config['max_size']             = 100;
 	        $config['max_width']            = 1024;
 	        $config['max_height']           = 768;
@@ -40,18 +41,18 @@ class login extends CI_Controller {
 	        $this->upload->do_upload('foto');
 			$file_name = $this->upload->data();
 		$res = $this->mymodel->insert('tbl_user',array(
-			'nim' => $_POST['nim'],
-			'nama' => $_POST['nama'],
-			'jk' => $_POST['jk'],
-			'tgl_lahir' => $_POST['ttl'],
-			'tahun_masuk' => $_POST['tahun_masuk'],
-			'prodi' => $_POST['prodi'],
-			'fakultas' => $_POST['fakultas'],
-			'hp' => $_POST['hp'],
+			'nim' => mysql_real_escape_string($_POST['nim']),
+			'nama' => mysql_real_escape_string($_POST['nama']),
+			'jk' => mysql_real_escape_string($_POST['jk']),
+			'tgl_lahir' => mysql_real_escape_string($_POST['ttl']),
+			'tahun_masuk' => mysql_real_escape_string($_POST['tahun_masuk']),
+			'prodi' => mysql_real_escape_string($_POST['prodi']),
+			'fakultas' => mysql_real_escape_string($_POST['fakultas']),
+			'hp' => mysql_real_escape_string($_POST['hp']),
 			'foto' => $file_name['file_name'],
-			'password' => md5($_POST['pass']),
+			'password' => mysql_real_escape_string(md5($_POST['pass'])),
 			'status' => "admin",
-			'email' => $_POST['email']
+			'email' => mysql_real_escape_string($_POST['email'])
 			));
 		if($res >= 1){
 			$this->session->set_flashdata('register','Pendaftaran Berhasil');
@@ -63,8 +64,7 @@ class login extends CI_Controller {
 
 	public function logout(){
 		$sessionData = array(
-		        'nim'  => $row->nim,
-		        'status' => $row->status
+		        'nim','status'
 			);
 		$this->session->unset_userdata($sessionData);
 		redirect(base_url().'index.php/login');
