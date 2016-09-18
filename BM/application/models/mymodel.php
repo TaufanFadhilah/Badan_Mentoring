@@ -16,6 +16,14 @@ class mymodel extends CI_Model {
 			return $res;
 	}
 
+	public function select_like($tableName,$param,$where){
+		$res = $this->db->select('*');
+		$res = $this->db->from($tableName);
+		$res = $this->db->like($param, $where);
+		$res = $this->db->get();
+		return $res;
+	}
+
 	public function delete($tableName,$where){
 		$res = $this->db->delete($tableName,$where);
 			return $res;

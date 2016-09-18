@@ -38,12 +38,12 @@
       </div>
       <div class="form-group has-feedback">
         <label>Password</label>
-        <input type="password" class="form-control" placeholder="Password" name="pass" id="pass" required>
+        <input type="password" class="form-control" placeholder="Password" name="pass" id="pass" pattern=".{8,}"   required title="8 characters minimum" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <label>Re-Password</label>
-        <input type="password" class="form-control" placeholder="Retype password" name="repass" id="repass" required>
+        <input type="password" class="form-control" placeholder="Retype password" name="repass" id="repass" pattern=".{8,}"   required title="8 characters minimum" required>
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

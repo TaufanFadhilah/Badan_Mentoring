@@ -30,7 +30,7 @@ class login extends CI_Controller {
 	}
 
 	public function do_register(){
-		$config['upload_path']          	= './assets/img/profile_pictures/';
+			$config['upload_path']          = './assets/img/profile_pictures/';
 	        $config['allowed_types']        = 'gif|jpg|png|jpeg';
 	        $config['max_size']             = 100;
 	        $config['max_width']            = 1024;
@@ -51,7 +51,7 @@ class login extends CI_Controller {
 			'hp' => mysql_real_escape_string($_POST['hp']),
 			'foto' => $file_name['file_name'],
 			'password' => mysql_real_escape_string(md5($_POST['pass'])),
-			'status' => "admin",
+			'status' => "Menti",
 			'email' => mysql_real_escape_string($_POST['email'])
 			));
 		if($res >= 1){

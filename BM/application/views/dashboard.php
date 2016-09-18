@@ -42,6 +42,12 @@
               <li >
                 <a href="<?php echo base_url() ?>index.php/dashboard/daftar_anggota">Daftar Anggota</a>
               </li>
+              <li >
+                <a href="<?php echo base_url().'index.php/dashboard/daftar_kelompok_'.$this->session->userdata('status').'/'.$this->session->userdata('nim') ?>">Daftar Kelompok</a>
+              </li>
+              <li >
+                <a href="<?php echo base_url() ?>index.php/dashboard/edit_profile/<?php echo $this->session->userdata('nim'); ?>">Edit Profile</a>
+              </li>
             </ul>
             <hr class="visible-xs m-t">
           </div>
@@ -68,6 +74,15 @@
       switch ($content) {
         case 'daftar_anggota':
           include('daftar_anggota.php');
+          break;
+        case 'daftar_kelompok_Mentor':
+          include('daftar_kelompok_Mentor.php');
+          break;
+        case 'daftar_kelompok_Menti':
+          include('daftar_kelompok_Menti.php');
+          break;
+        case 'edit_profile':
+          include('edit_profile.php');
           break;      
         default:
            echo "<h1>Timeline</h1>";
